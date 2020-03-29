@@ -1,0 +1,24 @@
+head
+    meta(name="description" content="NodeJS PWA Template by Jemigo.com")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    //- Add iOS meta tags and icons
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black")
+    meta(name="apple-mobile-web-app-title" content="NodeJS PWA Template")
+    link(rel="apple-touch-icon" href="/images/icons-192.png")
+    link(rel="shortcut icon" type="image/x-icon" href="/favicon.ico")
+    link(rel="manifest" href="manifest.json")
+    link(rel='stylesheet' href='style.css' type='text/css')
+    link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    link(rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-indigo.min.css")
+    script(defer src="https://code.getmdl.io/1.3.0/material.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js")
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.css" rel="stylesheet")
+    title= title
+    script.
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js');
+            });
+        }

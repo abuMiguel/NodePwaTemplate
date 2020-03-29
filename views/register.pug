@@ -1,0 +1,20 @@
+doctype html
+html
+    include head.pug
+    body(style="background-image: url('../images/plant.jpg'); background-size:cover; background-position:center;")
+        div(style="width:300px;padding: 70px 0 25px 0;margin: 0 auto;")
+            img(src="../images/logo.jpg" style="width:100%;")
+            br
+            h5(style="text-align:center;") Register New Account
+            form(action="/register" method="POST")
+                div
+                    div(class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label")
+                        input(class="mdl-textfield__input" type="text" id="email" name="email" tabindex="1" value="")
+                        label(class="mdl-textfield__label" for="email") Full Visibility Email
+                p(style="color:red;font-size:1.75vw;") #{errorMessage}
+                p(style="color:green;font-size:1.75vw;") #{successMessage}
+                div
+                    input(type="submit" style="margin: 0 35%;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Sign Up")
+        div(style="text-align:center;")
+            a(href="/login.html") Sign In
+                
