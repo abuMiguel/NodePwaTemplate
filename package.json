@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "Joe P",
+  "author": "abuMiguel",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -24,6 +24,6 @@
     "sqlite3": "^4.1.0"
   },
   "devDependencies": {
-    "workbox-cli": "^4.3.1"
+    "workbox-cli": "^5.1.2"
   }
 }

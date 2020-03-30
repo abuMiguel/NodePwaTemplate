@@ -51,7 +51,7 @@ passport.use(new LocalStrategy(
             if (username && username.indexOf('@') > 0) {
                 username = username.substring(0, username.indexOf('@'));
             }
-            let user = await db.getEmployeePasswordAsync(username);
+            let user = await db.getUserPasswordAsync(username);
             if (!user) {
                 return done(null, false, { message: 'Username does not exist.' });
             }
@@ -84,12 +84,12 @@ app.post('/login', passport.authenticate('local', {
 }));
 
 passport.serializeUser(function (user, done) {
-    done(null, user.employeeId);
+    done(null, user.userId);
 });
 
 passport.deserializeUser(async function (id, done) {
     try {
-        let user = await db.getEmployeeByIdAsync(id);
+        let user = await db.getUserByIdAsync(id);
         done(null, user);
     }
     catch (err) {
@@ -167,16 +167,16 @@ app.post('/register', async function (req, res, next) {
             username = username.substring(0, username.indexOf('@'));
         }
 
-        let user = await db.employeeAccountExistsAsync(username);
-        let employeeId = null;
+        let user = await db.userAccountExistsAsync(username);
+        let userId = null;
         if (user && user.password) {
             res.render('register', {
                 errorMessage: 'An account already exists for this user.'
             });
             return;
         }
-        if (user && user.employeeId) {
-            employeeId = user.employeeId;
+        if (user && user.userId) {
+            userId = user.userId;
         }
 
         let from = await db.getAppEmailAsync();
@@ -188,10 +188,10 @@ app.post('/register', async function (req, res, next) {
         let phrase = await phraseCache;
         let encrypted = util.encrypt(pwd, phrase);
 
-        if (employeeId == null) {
-            await db.insertNewEmployeeAsync(username, encrypted);
+        if (userId == null) {
+            await db.insertNewUserAsync(username, encrypted);
         } else {
-            await db.updateEmployeeWithExistingId(employeeId, encrypted);
+            await db.updateUserWithExistingId(userId, encrypted);
         }
         message = message.replace('#username', username);
         message = message.replace('#password', pwd);
@@ -262,8 +262,8 @@ app.use(async function (err, req, res, next) {
     console.error(err.stack);
     let userId = "";
     let username = "";
-    if (req && req.user && req.user.employeeId && req.user.email) {
-        userId = req.user.employeeId;
+    if (req && req.user && req.user.userId && req.user.email) {
+        userId = req.user.userId;
         username = req.user.email;
     }
 
