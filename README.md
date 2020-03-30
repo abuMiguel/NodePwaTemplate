@@ -8,20 +8,4 @@ amount of dependencies and I think you will find this to be a very lean stack.
 Using this template, you can just start creating your app and hopefully it is useful enough to save some people a lot of time.
 I'm open to comments, suggestions, and feedback.
 
-
-This template is packed with features and includes boiler plate code for the following:
-PWA manifest
-service worker registration using Workbox
-html email sending service using email templates
-uploading files
-database access layer using async functions with sqlite3
-a sqlite database with a user table, configuration table, and error log table
-NodeJS server using Express
-authentication using Passport with local strategy
-sessions using express-session
-route protection
-password encryption/decryption
-flash messages
-error handling and logging
-user registration over email
-material lite login form
+See the wiki for a list of features and more details about how to get started with the template.
